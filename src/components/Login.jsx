@@ -12,6 +12,8 @@ const Login = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
+    const [error, setError] = useState("")
+
     const handleLogin = async () => {
 
         try {
@@ -23,6 +25,7 @@ const Login = () => {
             dispatch(addUser(res.data.data))
             return navigate("/")
         } catch (error) {
+            setError(error?.response?.data.error || "Something went wrong")
             console.error(error)
         }
 
@@ -57,6 +60,7 @@ const Login = () => {
                         </label>
 
                     </div>
+                    <p className="text-red-500">{error}</p>
                     <div className="card-actions justify-center m-2">
                         <button className="btn btn-primary"
                             onClick={handleLogin}
