@@ -9,9 +9,9 @@ import { BASE_URL } from "../utils/constats"
 const EditProfile = ({ user }) => {
     const [firstName, setFirstName] = useState(user.firstName)
     const [lastName, setLastName] = useState(user.lastName)
-    const [about, setAbout] = useState(user.about)
-    const [gender, setGender] = useState(user.gender)
-    const [age, setAge] = useState(user.age)
+    const [about, setAbout] = useState(user.about || "")
+    const [gender, setGender] = useState(user.gender || "")
+    const [age, setAge] = useState(user.age || "")
     const [photoUrl, setPhotoUrl] = useState(user.photoUrl)
     const [error, setError] = useState("")
     const [showToast, setShowToast] = useState(false)
@@ -93,9 +93,10 @@ const EditProfile = ({ user }) => {
                                     </div>
 
                                     <select className="select select-bordered w-full max-w-xs"
-                                    value={gender}
-                                    onChange={(e) => setGender(e.target.value)}
+                                        value={gender}
+                                        onChange={(e) => setGender(e.target.value)}
                                     >
+                                        <option value="">Select</option>
                                         <option value="male">Male</option>
                                         <option value="female">Female</option>
                                         <option value="other">Other</option>
@@ -113,9 +114,9 @@ const EditProfile = ({ user }) => {
                                         <span className="label-text">About</span>
                                     </div>
 
-                                    <textarea className="textarea textarea-bordered w-full max-w-xs" 
-                                    value={about}
-                                    onChange={(e) => setAbout(e.target.value)}
+                                    <textarea className="textarea textarea-bordered w-full max-w-xs"
+                                        value={about}
+                                        onChange={(e) => setAbout(e.target.value)}
                                     ></textarea>
                                     {/* <input type="text"
                                         value={about}
